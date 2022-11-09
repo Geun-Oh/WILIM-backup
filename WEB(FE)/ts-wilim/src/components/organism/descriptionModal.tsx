@@ -9,7 +9,7 @@ import { Text } from "../atom/text"
 import { BaseStyles } from "../theme"
 import descriptions from "../../utils/descriptions"
 import { useDispatch } from "react-redux"
-import { AppThunkDispatch } from "../../store/store"
+import { AppDispatch, AppThunkDispatch } from "../../store/store"
 import { updateUserGoal } from "../../store/asyncThunks/updateUserGoal"
 import { useSelector } from "react-redux"
 import { ReducerType } from "../../store/rootReducer"
@@ -21,7 +21,7 @@ import { useNavigate } from "react-router-dom"
 
 export const DescriptionModal = () => {
     const appDispatch = useDispatch<AppThunkDispatch>();
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
     const getDates = async (url: string) => await axios.get(url).then(res => dispatch(updateGoalDateInfo(res.data.body.items)));
     const goal = useSelector((state: ReducerType) => state.toggle.goalSearchInfo);
